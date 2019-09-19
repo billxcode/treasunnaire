@@ -13,6 +13,9 @@
 		B7CBECE723332C9D0061E87A /* Treasunnaire.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECE523332C9D0061E87A /* Treasunnaire.xcdatamodeld */; };
 		B7CBECE923332C9E0061E87A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7CBECE823332C9E0061E87A /* Assets.xcassets */; };
 		B7CBECEC23332C9E0061E87A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7CBECEA23332C9E0061E87A /* LaunchScreen.storyboard */; };
+		B7CBECF5233331500061E87A /* QuestionnaireCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECF4233331500061E87A /* QuestionnaireCell.swift */; };
+		B7CBECF8233338EA0061E87A /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECF7233338EA0061E87A /* SignupController.swift */; };
+		B7CBECFA233339040061E87A /* SigninController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECF9233339040061E87A /* SigninController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		B7CBECE823332C9E0061E87A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7CBECEB23332C9E0061E87A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7CBECED23332C9E0061E87A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7CBECF4233331500061E87A /* QuestionnaireCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireCell.swift; sourceTree = "<group>"; };
+		B7CBECF7233338EA0061E87A /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
+		B7CBECF9233339040061E87A /* SigninController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +62,9 @@
 		B7CBECDD23332C9D0061E87A /* Treasunnaire */ = {
 			isa = PBXGroup;
 			children = (
+				B7CBECF6233338C00061E87A /* Controllers */,
+				B7CBECF32333311A0061E87A /* Models */,
 				B7CBECDE23332C9D0061E87A /* AppDelegate.swift */,
-				B7CBECE023332C9D0061E87A /* ViewController.swift */,
 				B7CBECE223332C9D0061E87A /* Main.storyboard */,
 				B7CBECE823332C9E0061E87A /* Assets.xcassets */,
 				B7CBECEA23332C9E0061E87A /* LaunchScreen.storyboard */,
@@ -65,6 +72,24 @@
 				B7CBECE523332C9D0061E87A /* Treasunnaire.xcdatamodeld */,
 			);
 			path = Treasunnaire;
+			sourceTree = "<group>";
+		};
+		B7CBECF32333311A0061E87A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B7CBECF4233331500061E87A /* QuestionnaireCell.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B7CBECF6233338C00061E87A /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7CBECE023332C9D0061E87A /* ViewController.swift */,
+				B7CBECF7233338EA0061E87A /* SignupController.swift */,
+				B7CBECF9233339040061E87A /* SigninController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,7 +164,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7CBECE723332C9D0061E87A /* Treasunnaire.xcdatamodeld in Sources */,
+				B7CBECFA233339040061E87A /* SigninController.swift in Sources */,
+				B7CBECF5233331500061E87A /* QuestionnaireCell.swift in Sources */,
 				B7CBECE123332C9D0061E87A /* ViewController.swift in Sources */,
+				B7CBECF8233338EA0061E87A /* SignupController.swift in Sources */,
 				B7CBECDF23332C9D0061E87A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
