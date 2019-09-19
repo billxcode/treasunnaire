@@ -7,9 +7,12 @@
         <relationship name="user_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="Questionnaire" representedClassName="Questionnaire" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fullname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="link" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="point" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="point" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="user_id" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
     </entity>
     <entity name="Session" representedClassName="Session" syncable="YES" codeGenerationType="class">
@@ -25,9 +28,9 @@
         <attribute name="password" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Profile" positionX="-36" positionY="45" width="128" height="105"/>
-        <element name="Questionnaire" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="User" positionX="-54" positionY="18" width="128" height="105"/>
-        <element name="Session" positionX="-18" positionY="81" width="128" height="105"/>
+        <element name="Profile" positionX="-30.50390625" positionY="-93.34375" width="128" height="105"/>
+        <element name="Questionnaire" positionX="-322.70703125" positionY="-122.73046875" width="128" height="148"/>
+        <element name="User" positionX="-264.0859375" positionY="80.4375" width="128" height="105"/>
+        <element name="Session" positionX="-52.5234375" positionY="85.03515625" width="128" height="105"/>
     </elements>
 </model>

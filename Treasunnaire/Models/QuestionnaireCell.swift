@@ -9,7 +9,10 @@
 import UIKit
 
 class QuestionnaireCell: UITableViewCell {
-
+    @IBOutlet weak var fullname: UILabel!
+    @IBOutlet weak var point: UILabel!
+    @IBOutlet weak var link: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
