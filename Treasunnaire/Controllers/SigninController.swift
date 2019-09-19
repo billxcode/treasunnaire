@@ -18,11 +18,30 @@ class SigninController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSManagedObject>(entityName: "Session")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let result = try context.fetch(request)
+            
+            if result.count > 0 {
+                print("session existed")
+                performSegue(withIdentifier: "home", sender: nil)
+            }
+        } catch {
+            print("no sessions found")
+        }
+    }
+    
     @IBAction func signIn(_ sender: Any) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let context = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        let request = NSFetchRequest<NSManagedObject>(entityName: "User")
         let email = NSPredicate(format: "email = %@", self.email.text ?? "admin")
         let password = NSPredicate(format: "password = %@", self.password.text ?? "admin")
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [email, password])
@@ -31,10 +50,19 @@ class SigninController: UIViewController {
         
         do {
             let result = try context.fetch(request)
-            if result.count > 0 {
-                performSegue(withIdentifier: "home", sender: nil)
-            } else {
-                self.showAlert(header: "Sorry :(", message: "email atau password salah")
+            
+            let result_email = result[0].value(forKey: "email") as! String
+            let result_fullname = result[0].value(forKey: "fullname") as! String
+            let result_password = result[0].value(forKey: "password") as! String
+            
+            saveLoginSession(email: result_email, fullname: result_fullname, password: result_password)
+            
+            DispatchQueue.main.async {
+                if result.count > 0 {
+                    self.performSegue(withIdentifier: "home", sender: nil)
+                } else {
+                    self.showAlert(header: "Sorry :(", message: "email atau password salah")
+                }
             }
             
         } catch {
@@ -51,19 +79,31 @@ class SigninController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func saveLoginSession(email: String, fullname: String, password: String)
+    {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Session", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newUser.setValue(email, forKey: "email")
+        newUser.setValue(fullname, forKey: "fullname")
+        newUser.setValue(password, forKey: "password")
+        
+        do {
+            try context.save()
+            print(email, fullname, password)
+            print("session saved")
+        } catch {
+            print("failed")
+        }
+    }
+    
     @IBAction func unwindToSignin(segue: UIStoryboardSegue) {}
     
     @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
         view.endEditing(true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -31,7 +31,22 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
         
     }
     
-
+    @IBAction func logout(_ sender: UIButton) {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Session")
+        
+        let batchDelete = NSBatchDeleteRequest(fetchRequest: request)
+        
+        do {
+            try context.execute(batchDelete)
+        } catch {
+            print("failed logout")
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

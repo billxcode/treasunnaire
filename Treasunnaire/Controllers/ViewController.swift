@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    @IBOutlet weak var link: UITextField!
+    @IBOutlet weak var point: UITextField!
     
     var myname = ["bill", "tantowi", "jauhari"]
     @IBOutlet weak var user: UIImageView!
@@ -39,6 +43,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         
         self.present(alert, animated: true)
+    }
+    
+    @IBAction func uploadQuestionnaire(_ sender: UIButton) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let entity = NSEntityDescription.entity(forEntityName: "User", in: context)
+        let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        
+        newUser.setValue(link.text, forKey: "link")
+        newUser.setValue(point.text, forKey: "point")
+        
+        do {
+            try context.save()
+        } catch {
+            print("failed")
+        }
+        
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}

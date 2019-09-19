@@ -24,8 +24,8 @@
                                     <constraint firstAttribute="height" constant="50" id="FL7-qd-FUX"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="next" textContentType="url"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Rupiah" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OqN-JU-T0H">
                                 <rect key="frame" x="100" y="213.5" width="294" height="50"/>
@@ -33,8 +33,8 @@
                                     <constraint firstAttribute="height" constant="50" id="EAn-ug-RwW"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="cc-number"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Treasunnaire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVQ-qa-oJe">
                                 <rect key="frame" x="20" y="64" width="374" height="39.5"/>
@@ -63,6 +63,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wL7-bk-4e8">
                                 <rect key="frame" x="20" y="293.5" width="374" height="30"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="uploadQuestionnaire:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a9k-w2-iVl"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zdI-f7-jdr">
                                 <rect key="frame" x="0.0" y="343.5" width="414" height="552.5"/>
@@ -133,6 +136,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="link" destination="6iH-xh-s2U" id="gYl-ov-nw1"/>
+                        <outlet property="point" destination="OqN-JU-T0H" id="qCI-7M-qzZ"/>
                         <outlet property="user" destination="MBA-pd-h6u" id="eXr-6z-qIc"/>
                         <segue destination="JQX-B3-Lhu" kind="show" identifier="user" id="n13-cH-nYM"/>
                     </connections>
@@ -144,7 +149,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1656.521739130435" y="45.535714285714285"/>
+            <point key="canvasLocation" x="1597" y="46"/>
         </scene>
         <!--User Controller-->
         <scene sceneID="ASy-xi-qan">
@@ -218,14 +223,24 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cI3-Ce-uet">
+                                <rect key="frame" x="20" y="110" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logout:" destination="JQX-B3-Lhu" eventType="touchUpInside" id="QDL-5S-Scc"/>
+                                    <segue destination="cST-yq-lJd" kind="unwind" unwindAction="unwindToSigninWithSegue:" id="UiE-pd-19L"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="zdh-Cj-4t0" firstAttribute="top" secondItem="6nc-ul-pjg" secondAttribute="top" constant="20" id="0qz-Oh-sxr"/>
+                            <constraint firstItem="cI3-Ce-uet" firstAttribute="leading" secondItem="6nc-ul-pjg" secondAttribute="leading" constant="20" id="Af5-CC-N8e"/>
                             <constraint firstItem="pzr-Nm-Uu1" firstAttribute="top" secondItem="6nc-ul-pjg" secondAttribute="top" constant="100" id="E0F-Fg-19g"/>
                             <constraint firstItem="6nc-ul-pjg" firstAttribute="trailing" secondItem="A7H-ba-InM" secondAttribute="trailing" constant="20" id="FhB-ZP-7no"/>
                             <constraint firstItem="A7H-ba-InM" firstAttribute="top" secondItem="6nc-ul-pjg" secondAttribute="top" constant="20" id="LH5-23-phn"/>
                             <constraint firstItem="pzr-Nm-Uu1" firstAttribute="leading" secondItem="6nc-ul-pjg" secondAttribute="leading" id="WqN-Cb-30x"/>
+                            <constraint firstItem="cI3-Ce-uet" firstAttribute="top" secondItem="zdh-Cj-4t0" secondAttribute="bottom" constant="10" id="X5h-f6-xyg"/>
                             <constraint firstItem="6nc-ul-pjg" firstAttribute="trailing" secondItem="pzr-Nm-Uu1" secondAttribute="trailing" id="eJT-tG-94M"/>
                             <constraint firstAttribute="bottom" secondItem="pzr-Nm-Uu1" secondAttribute="bottom" id="jvb-Hc-7Qw"/>
                             <constraint firstItem="zdh-Cj-4t0" firstAttribute="leading" secondItem="6nc-ul-pjg" secondAttribute="leading" constant="20" id="l6F-g2-4XT"/>
@@ -236,7 +251,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H4F-id-yp9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="cST-yq-lJd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2425" y="46"/>
+            <point key="canvasLocation" x="2368" y="46"/>
         </scene>
         <!--Signin Controller-->
         <scene sceneID="EpW-eZ-aWC">
@@ -262,7 +277,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMA-Up-Snd">
                                 <rect key="frame" x="20" y="324" width="100" height="21"/>
@@ -300,7 +315,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -344,7 +359,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="49" y="61"/>
+            <point key="canvasLocation" x="797" y="46"/>
         </scene>
         <!--Signup Controller-->
         <scene sceneID="klH-bC-O3A">
@@ -388,7 +403,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMx-p1-JEn">
                                 <rect key="frame" x="20" y="381" width="100" height="21"/>
@@ -406,7 +421,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="new-password"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retype" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaM-4H-M7t">
                                 <rect key="frame" x="20" y="462" width="100" height="21"/>
@@ -424,7 +439,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" textContentType="new-password"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssA-lD-vbe">
                                 <rect key="frame" x="20" y="94" width="374" height="40"/>
@@ -501,7 +516,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="836" y="436"/>
+            <point key="canvasLocation" x="-13" y="46"/>
         </scene>
     </scenes>
     <resources>
