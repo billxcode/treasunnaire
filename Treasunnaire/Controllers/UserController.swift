@@ -14,21 +14,25 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var email: UILabel!
     
     var users: [NSManagedObject] = []
-    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
-    var result: NSFetchRequest<NSFetchRequestResult>!
+    var questionnaire: [NSManagedObject] = []
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
+        return questionnaire.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let table = tableView.dequeueReusableCell(withIdentifier: "UserCell") as? UserCell
+        let table = tableView.dequeueReusableCell(withIdentifier: "UserQuestionnaireCell") as? UserQuestionnaireCell
+//        let table = tableView.dequeueReusableCell(withIdentifier: "UserCell") as? UserCell
         
-        table?.email.text = users[indexPath.row].value(forKey: "email") as! String
-        table?.name.text = users[indexPath.row].value(forKey: "fullname") as! String
-        table?.uuid.text = users[indexPath.row].value(forKey: "password") as! String
-        
+        table?.fullname.text = questionnaire[indexPath.row].value(forKey: "fullname") as! String
+        table?.point.text = questionnaire[indexPath.row].value(forKey: "point") as! String
+        table?.link.text = questionnaire[indexPath.row].value(forKey: "link") as! String
+
+//        table?.email.text = users[indexPath.row].value(forKey: "email") as! String
+//        table?.name.text = users[indexPath.row].value(forKey: "fullname") as! String
+//        table?.uuid.text = users[indexPath.row].value(forKey: "password") as! String
+//
         return table!
         
     }
@@ -57,6 +61,11 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
         let context = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSManagedObject>(entityName: "User")
         let session = NSFetchRequest<NSManagedObject>(entityName: "Session")
+        let quest = NSFetchRequest<NSManagedObject>(entityName: "Questionnaire")
+        let sorting = NSSortDescriptor(key: "time", ascending: false)
+        quest.sortDescriptors = [sorting]
+        
+        quest.returnsObjectsAsFaults = false
         session.returnsObjectsAsFaults = false
         request.returnsObjectsAsFaults = false
     
@@ -66,6 +75,8 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
             fullname.text = credential[0].value(forKey: "fullname") as! String
             email.text = credential[0].value(forKey: "email") as! String
             
+            quest.predicate = NSPredicate(format: "email = %@", email.text ?? "admin")
+            questionnaire = try context.fetch(quest)
             
         } catch {
             print("Failed")

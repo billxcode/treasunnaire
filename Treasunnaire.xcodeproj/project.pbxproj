@@ -19,6 +19,7 @@
 		B7CBECFD233370010061E87A /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECFC233370010061E87A /* UserController.swift */; };
 		B7CBECFF233370670061E87A /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECFE233370670061E87A /* UserCell.swift */; };
 		B7CBED01233382240061E87A /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBED00233382240061E87A /* UserObject.swift */; };
+		B7CBED032333F6E20061E87A /* UserQuestionnaireCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBED022333F6E20061E87A /* UserQuestionnaireCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		B7CBECFC233370010061E87A /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		B7CBECFE233370670061E87A /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		B7CBED00233382240061E87A /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
+		B7CBED022333F6E20061E87A /* UserQuestionnaireCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestionnaireCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				B7CBECF4233331500061E87A /* QuestionnaireCell.swift */,
 				B7CBECFE233370670061E87A /* UserCell.swift */,
 				B7CBED00233382240061E87A /* UserObject.swift */,
+				B7CBED022333F6E20061E87A /* UserQuestionnaireCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				B7CBECE723332C9D0061E87A /* Treasunnaire.xcdatamodeld in Sources */,
 				B7CBED01233382240061E87A /* UserObject.swift in Sources */,
 				B7CBECFA233339040061E87A /* SigninController.swift in Sources */,
+				B7CBED032333F6E20061E87A /* UserQuestionnaireCell.swift in Sources */,
 				B7CBECF5233331500061E87A /* QuestionnaireCell.swift in Sources */,
 				B7CBECE123332C9D0061E87A /* ViewController.swift in Sources */,
 				B7CBECFD233370010061E87A /* UserController.swift in Sources */,
