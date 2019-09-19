@@ -45,7 +45,7 @@ class SignupController: UIViewController, UITextFieldDelegate {
             
             do {
                 try context.save()
-                self.showAlert(header: "Success", message: "Thankyou for joining us :)")
+                self.showAlert(header: "Success", message: "Thankyou for joining us :) \n Please Login")
             } catch {
                 self.showAlert(header: "Iam Sorry", message: "You are not joining us yet")
             }
@@ -84,7 +84,9 @@ class SignupController: UIViewController, UITextFieldDelegate {
     {
         let alert = UIAlertController(title: header, message: message, preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction) in
+            self.performSegue(withIdentifier: "unwindToSignin", sender: nil)
+        }))
         
         self.present(alert, animated: true)
     }

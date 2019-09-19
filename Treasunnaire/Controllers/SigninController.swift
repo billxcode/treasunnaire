@@ -51,14 +51,14 @@ class SigninController: UIViewController {
         do {
             let result = try context.fetch(request)
             
-            let result_email = result[0].value(forKey: "email") as! String
-            let result_fullname = result[0].value(forKey: "fullname") as! String
-            let result_password = result[0].value(forKey: "password") as! String
-            
-            saveLoginSession(email: result_email, fullname: result_fullname, password: result_password)
-            
             DispatchQueue.main.async {
                 if result.count > 0 {
+                    let result_email = result[0].value(forKey: "email") as! String
+                    let result_fullname = result[0].value(forKey: "fullname") as! String
+                    let result_password = result[0].value(forKey: "password") as! String
+                    
+                    self.saveLoginSession(email: result_email, fullname: result_fullname, password: result_password)
+                    
                     self.performSegue(withIdentifier: "home", sender: nil)
                 } else {
                     self.showAlert(header: "Sorry :(", message: "email atau password salah")

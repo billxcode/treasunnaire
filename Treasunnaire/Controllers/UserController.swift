@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 class UserController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    @IBOutlet weak var fullname: UILabel!
+    @IBOutlet weak var email: UILabel!
     
     var users: [NSManagedObject] = []
     var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
@@ -54,10 +56,16 @@ class UserController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let context = appDelegate.persistentContainer.viewContext
         let request = NSFetchRequest<NSManagedObject>(entityName: "User")
+        let session = NSFetchRequest<NSManagedObject>(entityName: "Session")
+        session.returnsObjectsAsFaults = false
         request.returnsObjectsAsFaults = false
-        
+    
         do {
             users = try context.fetch(request)
+            let credential = try context.fetch(session)
+            fullname.text = credential[0].value(forKey: "fullname") as! String
+            email.text = credential[0].value(forKey: "email") as! String
+            
             
         } catch {
             print("Failed")
