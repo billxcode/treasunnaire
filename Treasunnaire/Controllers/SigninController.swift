@@ -42,6 +42,8 @@ class SigninController: UIViewController {
         }
     }
     
+    @IBAction func unwindToSignin(segue: UIStoryboardSegue) {}
+    
     /*
     // MARK: - Navigation
 
