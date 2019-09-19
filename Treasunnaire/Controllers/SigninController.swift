@@ -32,7 +32,7 @@ class SigninController: UIViewController {
         do {
             let result = try context.fetch(request)
             if result.count > 0 {
-                self.showAlert(header: "Thankyou", message: "Success Login")
+                performSegue(withIdentifier: "home", sender: nil)
             } else {
                 self.showAlert(header: "Sorry :(", message: "email atau password salah")
             }
