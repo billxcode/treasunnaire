@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class SignupController: UIViewController {
+class SignupController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var fullname: UITextField!
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -29,17 +29,64 @@ class SignupController: UIViewController {
         
         let entity = NSEntityDescription.entity(forEntityName: "User", in: context)
         let newUser = NSManagedObject(entity: entity!, insertInto: context)
+        let fullname = self.fullname.text ?? ""
+        let email = self.email.text ?? ""
+        let password = self.password.text ?? ""
+        let retype = self.retypePassword.text ?? ""
         
-        newUser.setValue(self.fullname.text, forKey: "fullname")
-        newUser.setValue(self.email.text, forKey: "email")
-        newUser.setValue(self.password.text, forKey: "password")
+        let result = self.checkField(fullname: fullname, email: email, password: password, retype: retype)
         
-        do {
-            try context.save()
-        } catch {
-            print("failed saving")
+        
+        if result == "success" {
+            
+            newUser.setValue(self.fullname.text?.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "fullname")
+            newUser.setValue(self.email.text?.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "email")
+            newUser.setValue(self.password.text?.trimmingCharacters(in: .whitespacesAndNewlines), forKey: "password")
+            
+            do {
+                try context.save()
+                self.showAlert(header: "Success", message: "Thankyou for joining us :)")
+            } catch {
+                self.showAlert(header: "Iam Sorry", message: "You are not joining us yet")
+            }
+            
+        } else {
+            self.showAlert(header: "Sorry", message: result)
         }
         
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        retypePassword.resignFirstResponder()
+        return true
+    }
+    
+    func checkField(fullname: String, email: String, password: String, retype: String) -> String
+    {
+        if fullname == "" {
+            return "Anda belum mengisi nama";
+        }else if email == "" {
+            return "Anda belum mengisi email";
+        }else if password == "" {
+            return "anda belum mengisi password"
+        }else if retype != password {
+            return "password yang anda masukkan tidak sama"
+        }
+        
+        return "success";
+    }
+    
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    func showAlert(header: String, message: String)
+    {
+        let alert = UIAlertController(title: header, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
     }
     
     /*

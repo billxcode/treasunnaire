@@ -128,7 +128,7 @@
                                 <rect key="frame" x="140" y="214" width="254" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMA-Up-Snd">
                                 <rect key="frame" x="20" y="294" width="100" height="21"/>
@@ -163,10 +163,11 @@
                                 <rect key="frame" x="140" y="294" width="254" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="password"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="AMA-Up-Snd" firstAttribute="leading" secondItem="hNT-yn-V8V" secondAttribute="leading" constant="20" id="00i-9O-b9c"/>
                             <constraint firstItem="hNT-yn-V8V" firstAttribute="trailing" secondItem="M9U-Jz-7xv" secondAttribute="trailing" constant="20" id="1Dg-KF-duj"/>
@@ -189,13 +190,22 @@
                             <constraint firstItem="hNT-yn-V8V" firstAttribute="bottom" secondItem="bGP-4e-K4E" secondAttribute="bottom" constant="30" id="sxJ-uX-Eyn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="hNT-yn-V8V"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wha-Tz-gvk" appends="YES" id="vqV-6q-ztH"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="email" destination="shr-WY-63y" id="OAU-EE-mcI"/>
                         <outlet property="password" destination="M9U-Jz-7xv" id="3CJ-rh-j8P"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="Home" id="V0C-BD-YgC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nbZ-7v-dGz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wha-Tz-gvk">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="USc-7O-zyl" id="3mL-XV-jnm"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="49" y="61"/>
         </scene>
@@ -220,7 +230,7 @@
                                 <rect key="frame" x="140" y="214" width="254" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CY5-f6-N8d">
                                 <rect key="frame" x="20" y="275" width="100" height="21"/>
@@ -235,7 +245,7 @@
                                 <rect key="frame" x="140" y="274" width="254" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="email"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMx-p1-JEn">
                                 <rect key="frame" x="20" y="336" width="100" height="21"/>
@@ -250,7 +260,7 @@
                                 <rect key="frame" x="140" y="334" width="254" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="new-password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retype" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YaM-4H-M7t">
                                 <rect key="frame" x="20" y="397" width="100" height="21"/>
@@ -265,7 +275,7 @@
                                 <rect key="frame" x="140" y="394" width="254" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" textContentType="new-password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ssA-lD-vbe">
                                 <rect key="frame" x="20" y="94" width="374" height="40"/>
@@ -289,6 +299,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="IgW-1v-oxp" firstAttribute="top" secondItem="q1X-yZ-ht9" secondAttribute="bottom" constant="30" id="1If-GI-ti5"/>
                             <constraint firstItem="JLg-ng-4xd" firstAttribute="trailing" secondItem="Qpx-ES-kBx" secondAttribute="trailing" constant="20" id="3rT-Yx-tqz"/>
@@ -321,6 +332,9 @@
                             <constraint firstItem="un5-ep-poG" firstAttribute="leading" secondItem="JLg-ng-4xd" secondAttribute="leading" constant="20" id="zt5-ih-hn7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JLg-ng-4xd"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="BWK-KB-wym" appends="YES" id="CpM-xB-IfF"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="email" destination="TRN-he-oZu" id="iTN-Jt-dt0"/>
@@ -332,8 +346,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEK-Tl-W9r" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="J3Z-Kg-f9P" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="BWK-KB-wym">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="RLP-IN-lCK" id="5aj-fS-QAQ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="892.75362318840587" y="60.9375"/>
+            <point key="canvasLocation" x="893" y="477"/>
         </scene>
     </scenes>
 </document>

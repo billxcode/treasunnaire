@@ -32,9 +32,9 @@ class SigninController: UIViewController {
         do {
             let result = try context.fetch(request)
             if result.count > 0 {
-                print("login")
+                self.showAlert(header: "Thankyou", message: "Success Login")
             } else {
-                print("email atau password salah")
+                self.showAlert(header: "Sorry :(", message: "email atau password salah")
             }
             
         } catch {
@@ -42,8 +42,20 @@ class SigninController: UIViewController {
         }
     }
     
+    func showAlert(header: String, message: String)
+    {
+        let alert = UIAlertController(title: header, message: message, preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
     @IBAction func unwindToSignin(segue: UIStoryboardSegue) {}
     
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     /*
     // MARK: - Navigation
 
