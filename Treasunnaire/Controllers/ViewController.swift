@@ -58,35 +58,59 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let context = appDelegate.persistentContainer.viewContext
         
-        let credential = NSFetchRequest<NSManagedObject>(entityName: "Session")
-        
-        credential.returnsObjectsAsFaults = false
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Questionnaire", in: context)
-        let newUser = NSManagedObject(entity: entity!, insertInto: context)
-        
-        do {
-            let result = try context.fetch(credential)
+        if validateFormValue() {
             
-            newUser.setValue(link.text, forKey: "link")
-            newUser.setValue(point.text, forKey: "point")
-            newUser.setValue(result[0].value(forKey: "email"), forKey: "email")
-            newUser.setValue(result[0].value(forKey: "fullname"), forKey: "fullname")
-            newUser.setValue(String(Int64(NSDate().timeIntervalSince1970 * 1000)), forKey: "time")
-        } catch {
-            print("failed fetch session")
+            let credential = NSFetchRequest<NSManagedObject>(entityName: "Session")
+            
+            credential.returnsObjectsAsFaults = false
+            
+            let entity = NSEntityDescription.entity(forEntityName: "Questionnaire", in: context)
+            let newUser = NSManagedObject(entity: entity!, insertInto: context)
+            
+            do {
+                let result = try context.fetch(credential)
+                
+                newUser.setValue(link.text, forKey: "link")
+                newUser.setValue(point.text, forKey: "point")
+                newUser.setValue(result[0].value(forKey: "email"), forKey: "email")
+                newUser.setValue(result[0].value(forKey: "fullname"), forKey: "fullname")
+                newUser.setValue(String(Int64(NSDate().timeIntervalSince1970 * 1000)), forKey: "time")
+            } catch {
+                print("failed fetch session")
+            }
+            
+            do {
+                try context.save()
+                fetchDataQuestionnaire()
+                listQuestionnaire.reloadData()
+                clearForm()
+                showAlert(header: "Hurray :)", message: "success save questionnaire")
+                
+            } catch {
+                print("failed save questionnaire")
+            }
+        } else {
+            showAlert(header: "Sorry :( ", message: "Anda belum memasukkan data")
         }
         
-        do {
-            try context.save()
-            fetchDataQuestionnaire()
-            listQuestionnaire.reloadData()
-            showAlert(header: "Hurray :)", message: "success save questionnaire")
-            
-        } catch {
-            print("failed save questionnaire")
+    }
+    
+    func validateFormValue() -> Bool
+    {
+        let link = self.link.text
+        let point = self.point.text
+        
+        if link == "" || point == "" {
+            return false
         }
         
+        return true
+    }
+    
+    func clearForm()
+    {
+        self.link.text = ""
+        self.point.text = ""
     }
     
     func fetchDataQuestionnaire()
@@ -96,6 +120,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let context = appDelegate.persistentContainer.viewContext
         
         let list = NSFetchRequest<NSManagedObject>(entityName: "Questionnaire")
+//        let list = NSFetchRequest<NSFetchRequestResult>(entityName: "Questionnaire")
 //        let delete = NSBatchDeleteRequest(fetchRequest: list)
 //
 //        do {
