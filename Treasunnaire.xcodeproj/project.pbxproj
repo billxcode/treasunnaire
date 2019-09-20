@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B74DB79B2334BCBD00A3FAE7 /* DesignTextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DB79A2334BCBD00A3FAE7 /* DesignTextBox.swift */; };
+		B74DB79D2334C51400A3FAE7 /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B74DB79C2334C51400A3FAE7 /* WebController.swift */; };
 		B7CBECDF23332C9D0061E87A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECDE23332C9D0061E87A /* AppDelegate.swift */; };
 		B7CBECE123332C9D0061E87A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECE023332C9D0061E87A /* ViewController.swift */; };
 		B7CBECE423332C9D0061E87A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7CBECE223332C9D0061E87A /* Main.storyboard */; };
@@ -20,9 +22,14 @@
 		B7CBECFF233370670061E87A /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBECFE233370670061E87A /* UserCell.swift */; };
 		B7CBED01233382240061E87A /* UserObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBED00233382240061E87A /* UserObject.swift */; };
 		B7CBED032333F6E20061E87A /* UserQuestionnaireCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CBED022333F6E20061E87A /* UserQuestionnaireCell.swift */; };
+		C82B4F659F2EDC8C5B8E210D /* Pods_Treasunnaire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CEC87C920DC93610BE82630 /* Pods_Treasunnaire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6916269E6F4570911D7CA857 /* Pods-Treasunnaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Treasunnaire.debug.xcconfig"; path = "Target Support Files/Pods-Treasunnaire/Pods-Treasunnaire.debug.xcconfig"; sourceTree = "<group>"; };
+		8CEC87C920DC93610BE82630 /* Pods_Treasunnaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Treasunnaire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B74DB79A2334BCBD00A3FAE7 /* DesignTextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignTextBox.swift; sourceTree = "<group>"; };
+		B74DB79C2334C51400A3FAE7 /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
 		B7CBECDB23332C9D0061E87A /* Treasunnaire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Treasunnaire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CBECDE23332C9D0061E87A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7CBECE023332C9D0061E87A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -39,6 +46,7 @@
 		B7CBECFE233370670061E87A /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		B7CBED00233382240061E87A /* UserObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserObject.swift; sourceTree = "<group>"; };
 		B7CBED022333F6E20061E87A /* UserQuestionnaireCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserQuestionnaireCell.swift; sourceTree = "<group>"; };
+		FB8CC0671A32C7BFCB94F321 /* Pods-Treasunnaire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Treasunnaire.release.xcconfig"; path = "Target Support Files/Pods-Treasunnaire/Pods-Treasunnaire.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,17 +54,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C82B4F659F2EDC8C5B8E210D /* Pods_Treasunnaire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58F452CC34597E878AF624E9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8CEC87C920DC93610BE82630 /* Pods_Treasunnaire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B74DB7972334BB7400A3FAE7 /* CustomClass */ = {
+			isa = PBXGroup;
+			children = (
+				B74DB79A2334BCBD00A3FAE7 /* DesignTextBox.swift */,
+			);
+			path = CustomClass;
+			sourceTree = "<group>";
+		};
 		B7CBECD223332C9D0061E87A = {
 			isa = PBXGroup;
 			children = (
 				B7CBECDD23332C9D0061E87A /* Treasunnaire */,
 				B7CBECDC23332C9D0061E87A /* Products */,
+				D48B561485D6B642CB2B0B8A /* Pods */,
+				58F452CC34597E878AF624E9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +98,7 @@
 		B7CBECDD23332C9D0061E87A /* Treasunnaire */ = {
 			isa = PBXGroup;
 			children = (
+				B74DB7972334BB7400A3FAE7 /* CustomClass */,
 				B7CBECFB233363B40061E87A /* Treasunnaire.entitlements */,
 				B7CBECF6233338C00061E87A /* Controllers */,
 				B7CBECF32333311A0061E87A /* Models */,
@@ -102,8 +130,18 @@
 				B7CBECF7233338EA0061E87A /* SignupController.swift */,
 				B7CBECF9233339040061E87A /* SigninController.swift */,
 				B7CBECFC233370010061E87A /* UserController.swift */,
+				B74DB79C2334C51400A3FAE7 /* WebController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D48B561485D6B642CB2B0B8A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6916269E6F4570911D7CA857 /* Pods-Treasunnaire.debug.xcconfig */,
+				FB8CC0671A32C7BFCB94F321 /* Pods-Treasunnaire.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -113,9 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7CBECF023332C9E0061E87A /* Build configuration list for PBXNativeTarget "Treasunnaire" */;
 			buildPhases = (
+				4D5835474F03B085558F5C7C /* [CP] Check Pods Manifest.lock */,
 				B7CBECD723332C9D0061E87A /* Sources */,
 				B7CBECD823332C9D0061E87A /* Frameworks */,
 				B7CBECD923332C9D0061E87A /* Resources */,
+				7A582469D247EB99563DE758 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -177,6 +217,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4D5835474F03B085558F5C7C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Treasunnaire-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A582469D247EB99563DE758 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Treasunnaire/Pods-Treasunnaire-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Treasunnaire/Pods-Treasunnaire-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Treasunnaire/Pods-Treasunnaire-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B7CBECD723332C9D0061E87A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -190,8 +272,10 @@
 				B7CBECF5233331500061E87A /* QuestionnaireCell.swift in Sources */,
 				B7CBECE123332C9D0061E87A /* ViewController.swift in Sources */,
 				B7CBECFD233370010061E87A /* UserController.swift in Sources */,
+				B74DB79D2334C51400A3FAE7 /* WebController.swift in Sources */,
 				B7CBECF8233338EA0061E87A /* SignupController.swift in Sources */,
 				B7CBECDF23332C9D0061E87A /* AppDelegate.swift in Sources */,
+				B74DB79B2334BCBD00A3FAE7 /* DesignTextBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +419,7 @@
 		};
 		B7CBECF123332C9E0061E87A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6916269E6F4570911D7CA857 /* Pods-Treasunnaire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Treasunnaire/Treasunnaire.entitlements;
@@ -354,6 +439,7 @@
 		};
 		B7CBECF223332C9E0061E87A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB8CC0671A32C7BFCB94F321 /* Pods-Treasunnaire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Treasunnaire/Treasunnaire.entitlements;

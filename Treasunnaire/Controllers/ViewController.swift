@@ -8,14 +8,19 @@
 
 import UIKit
 import CoreData
+import PusherSwift
+import CoreLocation
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var link: UITextField!
     @IBOutlet weak var point: UITextField!
     @IBOutlet weak var listQuestionnaire: UITableView!
     
     var questionnaire: [NSManagedObject] = []
+    let locationManager = CLLocationManager()
+    var selectedData: String!
+    
     @IBOutlet weak var user: UIImageView!
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,6 +36,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return table!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedData = questionnaire[indexPath.row].value(forKey: "link") as! String
+        if selectedData != nil {
+            performSegue(withIdentifier: "WebView", sender: nil)
+        }
+    }
+    
     @IBAction func gotoUser(_ sender: UITapGestureRecognizer) {
         performSegue(withIdentifier: "user", sender: nil)
     }
@@ -41,7 +53,44 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchDataQuestionnaire()
+        
+        
+        let options = PusherClientOptions(
+            host: .cluster("mt1")
+        )
+        
+        let pusher = Pusher(
+            key: "c221cf0e1dbaa860aa80",
+            options: options
+        )
+        
+        // subscribe to channel and bind to event
+        let channel = pusher.subscribe("billchannel")
+        
+        let _ = channel.bind(eventName: "billevent", callback: { (data: Any?) -> Void in
+            if let data = data as? [String : AnyObject] {
+                if let message = data["message"] as? String {
+                    print(message)
+                }
+            }
+        })
+        
+        pusher.connect()
         // Do any additional setup after loading the view.
+        
+        
+        
+        // indoor localization
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            setUpGeofenceForIosda()
+        }
     }
     
     func showAlert(header: String, message: String)
@@ -141,6 +190,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     @IBAction func unwindToHome(segue: UIStoryboardSegue) {}
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        print("locations = \(locValue.latitude) \(locValue.longitude)")
+//        testLabel.text = locValue.longitude.description
+    }
+    
+    func setUpGeofenceForIosda() {
+        let geofenceRegionCenter = CLLocationCoordinate2DMake(-6.302336, 106.652397);
+        let geofenceRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 1, identifier: "IosdaClass");
+        geofenceRegion.notifyOnExit = true;
+        geofenceRegion.notifyOnEntry = true;
+        self.locationManager.startMonitoring(for: geofenceRegion)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("Welcome to Playa Grande! If the waves are good, you can try surfing!")
+        
+        let alert = UIAlertController(title: "Alert", message: "Welcome to Playa Grande! If the waves are good, you can try surfing!", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        // Good place to schedule a local notification
+    }
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        print("Bye! Hope you had a great day at the beach!")
+        // Good place to schedule a local notification
+        
+        let alert = UIAlertController(title: "Alert", message: "Bye! Hope you had a great day at the beach!", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "WebView" {
+            if let destinationVC = segue.destination as? WebController {
+                destinationVC.urlDefault = selectedData
+            }
+        }
+    }
 
 }
 
