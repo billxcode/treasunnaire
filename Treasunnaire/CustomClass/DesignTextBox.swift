@@ -12,6 +12,7 @@ class DesignTextBox: UITextField {
     
     override func awakeFromNib() {
         self.layer.cornerRadius = 50
+        self.backgroundColor = .green
     }
 
     /*

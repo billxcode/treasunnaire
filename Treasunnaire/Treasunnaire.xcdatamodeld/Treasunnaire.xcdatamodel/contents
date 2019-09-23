@@ -30,7 +30,7 @@
     <elements>
         <element name="Profile" positionX="-30.50390625" positionY="-93.34375" width="128" height="105"/>
         <element name="Questionnaire" positionX="-322.70703125" positionY="-122.73046875" width="128" height="148"/>
-        <element name="User" positionX="-264.0859375" positionY="80.4375" width="128" height="105"/>
         <element name="Session" positionX="-52.5234375" positionY="85.03515625" width="128" height="105"/>
+        <element name="User" positionX="-264.0859375" positionY="80.4375" width="128" height="105"/>
     </elements>
 </model>

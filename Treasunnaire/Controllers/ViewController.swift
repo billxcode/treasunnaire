@@ -10,12 +10,22 @@ import UIKit
 import CoreData
 import PusherSwift
 import CoreLocation
+import LocalAuthentication
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate {
     
     @IBOutlet weak var link: UITextField!
     @IBOutlet weak var point: UITextField!
     @IBOutlet weak var listQuestionnaire: UITableView!
+    
+    var contextAuth = LAContext()
+    
+    /// The available states of being logged in or not.
+    enum AuthenticationState {
+        case loggedin, loggedout
+    }
+    
+    var state = AuthenticationState.loggedout
     
     var questionnaire: [NSManagedObject] = []
     let locationManager = CLLocationManager()
@@ -54,6 +64,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         fetchDataQuestionnaire()
         
+        contextAuth.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+        
+        
+        state = .loggedout
+        
+        authFaceID()
         
         let options = PusherClientOptions(
             host: .cluster("mt1")
@@ -90,6 +106,45 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             setUpGeofenceForIosda()
+        }
+    }
+    
+    func authFaceID()
+    {
+        contextAuth = LAContext()
+        
+        contextAuth.localizedCancelTitle = ""
+        contextAuth.localizedFallbackTitle = ""
+        
+        // First check if we have the needed hardware support.
+        var error: NSError?
+        if contextAuth.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+            
+            let reason = "Log in to your account"
+            contextAuth.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
+                
+                if success {
+                    
+                    // Move to the main thread because a state update triggers UI changes.
+                    DispatchQueue.main.async { [unowned self] in
+                        self.state = .loggedin
+                    }
+                    
+                } else {
+                    print(error?.localizedDescription ?? "Failed to authenticate")
+                    let alert = UIAlertController(title: "You can't enter the home", message: "Silahkan Priksa FaceID anda kembali", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Exit", style: .default, handler: {  (action: UIAlertAction) in
+                            exit(-1)
+                    }))
+                    self.present(alert, animated: true)
+                    // Fall back to a asking for username and password.
+                    // ...
+                }
+            }
+        } else {
+            print(error?.localizedDescription ?? "Can't evaluate policy")
+            // Fall back to a asking for username and password.
+            // ...
         }
     }
     
